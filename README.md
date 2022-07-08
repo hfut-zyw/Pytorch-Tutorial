@@ -1,6 +1,8 @@
-# <a id="Top">Pytorch Tutorial</a>
 
-边学边总结，更新页面见 [Github](https://github.com/hfut-zyw/Pytorch-Tutorial)
+
+边学边总结，如果有错误，请提交到 [Issues](https://github.com/hfut-zyw/Pytorch-Tutorial/issues/1)
+
+访问我的主页地址 [Homepage](https://github.com/hfut-zyw)
 
 
 

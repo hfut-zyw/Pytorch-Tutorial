@@ -1,4 +1,7 @@
 
+边学边总结，更新页面见 [Github](https://hfut-zyw.github.io/Pytorch-Tutorial/)  
+访问我的主页地址 [Homepage](https://hfut-zyw.github.io/) 
+
 ![](Torch.png)
 
 ## Pytorch的核心模块说明
@@ -29,9 +32,7 @@
 --- 
 ---
 
-边学边总结，更新页面见 [Github](https://hfut-zyw.github.io/Pytorch-Tutorial/)  
-访问我的主页地址 [Homepage](https://hfut-zyw.github.io/)
-
+# <a id="Top">目录</a>
 
 * <a href="#Tensor">*矩阵(Tensor)*</a>
    * <a href="#Tensor0">矩阵类型</a>

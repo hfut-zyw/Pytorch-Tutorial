@@ -1,19 +1,48 @@
+# <a id="Top">Pytorch Tutorial</a>
 
+![](Torch.png)
 
-边学边总结，如果有错误，请提交到 [Issues](https://github.com/hfut-zyw/Pytorch-Tutorial/issues/1)
+## Pytorch的核心模块说明
 
+- Pytorch两大主要功能：计算图构建与反向传播，优化 
+- 计算图构建与反向传播实现方案：基于Tensor类扩充各种operator，每个operator实现forward和backward方法 
+- 优化器的实现方案：基于object提供各种优化器类
+
+### autograd模块 
+- 首先基于Tensor扩充为Variable类，实现基本的加减乘除算子操作和反向传播（最新的torch已经不区分Variable和Tensor了） 
+- 基于Variable扩充为Function类，实现更为复杂的函数的前向传播和反向传播 
+- 上述实现操作和反向传播方法的时候需要调用functional中的API，而functional中的API又是调用C++的底层实现
+
+### nn模块 
+- 基于Variable（也可能是Function类）扩充为Module类，作为各种Layer和Loss的基类 
+- 基于Module扩充为各种Layer和Loss，实现神经单元的前向传播和反向传播算法
+- 上述实现操作和反向传播方法的时候需要调用functional中的API
+
+### optim模块 
+- 基于object定义Optimizer类，作为所有优化器的基类 
+- 基于Optimizer实现各种优化器，SGD,ADAD,ADMM等  
+
+### 计算图与优化器的交互 
+- 对于基础模块autograd，只能将Variable节点传递给优化器 
+- 对于nn模块，Module提供了parameter方法收集Variable参数，并传递给优化器
+- parameter方法使用了Parameter容器类来存储参数，Parameter类是Tensor的子类。也是一个Variable节点，但是不参与计算图构建，不需要实现forward和backward方法
+
+--- 
+---
+
+边学边总结，更新页面见 [Github](https://hfut-zyw.github.io/Pytorch-Tutorial/)  
 访问我的主页地址 [Homepage](https://hfut-zyw.github.io/)
 
 
-
 * <a href="#Tensor">*矩阵(Tensor)*</a>
-   * <a href="#Tensor0">1.矩阵类型</a>
-   * <a href="#Tensor1">2.矩阵创建</a>
-   * <a href="#Tensor2">3.矩阵切片</a>
-   * <a href="#Tensor2">4.矩阵运算</a>
-   * <a href="#Tensor3">5.矩阵变形</a>
-   * <a href="#Autograd">6.矩阵求导</a>
-   * <a href="#GPU">7.GPU</a>
+   * <a href="#Tensor0">矩阵类型</a>
+   * <a href="#Tensor1">矩阵创建</a>
+   * <a href="#Tensor2">矩阵切片</a>
+   * <a href="#Tensor2a">简单运算</a>
+   * <a href="#Tensor2b">统计方法</a>
+   * <a href="#Tensor3">矩阵变形</a>
+   * <a href="#Autograd">自动求导</a>
+   * <a href="#GPU">GPU</a>
 * <a href="#Dataset/DataLoader">*数据集(Dataset/DataLoader)*</a>
 * <a href="#Loss-function">*损失函数(Loss-function)*</a>
 * <a href="#Optimizer">*优化器(Optimizer)*</a>
@@ -29,7 +58,7 @@ import numpy as np
 import torch
 ```
 
-### <a id="Tensor0">1.矩阵类型</a> 
+### <a id="Tensor0">矩阵类型</a> 
 * Pytorch中定义了8种CPU张量类型和对应的GPU张量类型  
   
 * torch.Tensor()、torch.rand()、torch.randn() 均默认生成 torch.FloatTensor型  
@@ -51,7 +80,7 @@ import torch
 
 
 * 全局矩阵类型设置    
-  torch.set_default_tensor_type(torch.FloatTensor)  
+torch.set_default_tensor_type(torch.FloatTensor)  
   
 * 数据类型转换  
 在Tensor后加 .long(), .int(), .float(), .double()等即可，也可以用.to()函数进行转换，也可以在创建是填写dtype参数指定类型  
@@ -65,7 +94,7 @@ Tensor ----> 单个Python数据，使用data.item()，data为Tensor变量且只�
 Tensor ----> Python list，使用data.tolist()，data为Tensor变量，返回shape相同的可嵌套的list  
 
 
-### <a id="Tensor1">2.矩阵创建</a>
+### <a id="Tensor1">矩阵创建</a>
 
 ---
 
@@ -144,7 +173,7 @@ a1,a2,b,c1,c2,d,e,f
 <font color=Red>区间内线性采样</font>
 
 - <font color=MediumPurple >torch.arange(首，尾，可选步长) </font>   
-  note：不包括尾巴  
+note：不包括尾巴  
   
 - <font color=MediumPurple >torch.linspace(首，尾，数量)  </font>  
 note：包括尾巴，步长=(尾-首)/(n-1),因为starts+(n-1)step=end
@@ -211,15 +240,17 @@ torch.randn([3,4]),torch.normal(10,3,[3,4])
 
 
 
-### <a id="Tensor2">3.矩阵切片</a>
+### <a id="Tensor2">矩阵切片</a>
 
-### <a id="Tensor2">4.矩阵运算</a>
+### <a id="Tensor2a">简单运算</a>
 
-### <a id="Tensor3">5.矩阵变形</a>
+### <a id="Tensor2b">统计方法</a>
 
-### <a id="Autograd">6.矩阵求导</a>
+### <a id="Tensor3">矩阵变形</a>
 
-### <a id="GPU">7.GPU</a>
+### <a id="Autograd">自动求导</a>
+
+### <a id="GPU">GPU</a>
 
 ## <a id="Dataset/DataLoader">*数据集(Dataset/DataLoader)*</a>
 

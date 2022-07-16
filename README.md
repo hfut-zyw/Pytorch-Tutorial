@@ -27,7 +27,16 @@
 ### 计算图与优化器的交互 
 - 对于基础模块autograd，只能将Variable节点传递给优化器 
 - 对于nn模块，Module提供了parameter方法收集Variable参数，并传递给优化器
-- parameter方法使用了Parameter容器类来存储参数，Parameter类是Tensor的子类。也是一个Variable节点，但是不参与计算图构建，不需要实现forward和backward方法
+- parameter方法使用了Parameter容器类来存储参数，Parameter类是Tensor的子类。也是一个Variable节点，但是不参与计算图构建，不需要实现forward和backward方法 
+
+### Homework 1
+- 基于Function写出exp（）算子 
+- 使用autograd提供的Variable，Function构建一个简单的神经网络 
+- 对某个叶子节点参数进行优化 
+### Homeworak 2
+- 基于Module写出一个简单的神经元 
+- 使用nn模块提供的Module，各种Layer构建一个简单的神经网络
+- 对神经网络的所有参数进行优化 
 
 --- 
 ---

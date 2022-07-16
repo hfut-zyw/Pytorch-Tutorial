@@ -1,4 +1,3 @@
-# <a id="Top">Pytorch Tutorial</a>
 
 ![](Torch.png)
 

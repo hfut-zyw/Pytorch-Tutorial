@@ -7,23 +7,26 @@
 ## Pytorch的核心模块说明
 
 - Pytorch两大主要功能：计算图构建与反向传播，优化 
-- 计算图构建与反向传播实现方案：基于Tensor类扩充各种operator，每个operator实现forward和backward方法 
+- 计算图构建与反向传播实现方案：定义各种operator节点类（Variable，Function，Module），每个operator实现forward和backward方法 ，data区使用Tensor存储
 - 优化器的实现方案：基于object提供各种优化器类 
 - [Pytorch源码](https://github.com/pytorch/pytorch/tree/master/torch)
 
 ### autograd模块 
-- 首先基于Tensor扩充为Variable类，实现基本的加减乘除算子操作和反向传播（最新的torch已经不区分Variable和Tensor了） 
-- 基于Variable扩充为Function类，实现更为复杂的函数的前向传播和反向传播 
+- [doc](https://pytorch.org/docs/stable/autograd.html)
+- 定义Variable节点，实现基本的加减乘除算子操作和反向传播（最新的torch已经不区分Variable和Tensor了，文档里对tensor类也加入了前向反向传播） 
+- 定义Function类，作为复杂的算子的基类；需要用户自己写更为复杂的算子，autograd中没有提供写好的算子包
 - 上述实现操作和反向传播方法的时候需要调用functional中的API，而functional中的API又是调用C++的底层实现
 
 ### nn模块 
+- [doc](https://pytorch.org/docs/stable/nn.html)
 - 从零开始定义Module类，作为各种Layer和Loss的基类 
 - 基于Module扩充为各种Layer和Loss，实现神经单元的前向传播和反向传播算法
 - 上述实现操作和反向传播方法的时候需要调用functional中的API
 
 ### optim模块 
+- [doc](https://pytorch.org/docs/stable/optim.html)
 - 基于object定义Optimizer类，作为所有优化器的基类 
-- 基于Optimizer实现各种优化器，SGD,ADAD,ADMM等  
+- 基于Optimizer实现各种优化器，SGD,ADAD,ADMM等   
 
 ### 计算图与优化器的交互 
 - 对于基础模块autograd，只能将Variable节点传递给优化器 

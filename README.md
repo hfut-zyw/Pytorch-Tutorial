@@ -16,7 +16,7 @@
 - 上述实现操作和反向传播方法的时候需要调用functional中的API，而functional中的API又是调用C++的底层实现
 
 ### nn模块 
-- 基于Variable（也可能是Function类）扩充为Module类，作为各种Layer和Loss的基类 
+- 从零开始定义Module类，作为各种Layer和Loss的基类 
 - 基于Module扩充为各种Layer和Loss，实现神经单元的前向传播和反向传播算法
 - 上述实现操作和反向传播方法的时候需要调用functional中的API
 

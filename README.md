@@ -8,7 +8,8 @@
 
 - Pytorch两大主要功能：计算图构建与反向传播，优化 
 - 计算图构建与反向传播实现方案：基于Tensor类扩充各种operator，每个operator实现forward和backward方法 
-- 优化器的实现方案：基于object提供各种优化器类
+- 优化器的实现方案：基于object提供各种优化器类 
+- [Pytorch源码](https://github.com/pytorch/pytorch/tree/master/torch)
 
 ### autograd模块 
 - 首先基于Tensor扩充为Variable类，实现基本的加减乘除算子操作和反向传播（最新的torch已经不区分Variable和Tensor了） 

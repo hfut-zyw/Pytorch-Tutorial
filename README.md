@@ -37,10 +37,12 @@
 - 基于Function写出exp（）算子 
 - 使用autograd提供的Variable，Function构建一个简单的神经网络 
 - 对某个叶子节点参数进行优化 
+
 ### Homeworak 2
 - 基于Module写出一个简单的神经元 
 - 使用nn模块提供的Module，各种Layer构建一个简单的神经网络
 - 对神经网络的所有参数进行优化 
+
 ### Homeworak 3
 - 在Homework2的基础上基于Module模块看懂Transformer论文源码 
 [Transformer](https://github.com/jadore801120/attention-is-all-you-need-pytorch/tree/master/transformer) 
